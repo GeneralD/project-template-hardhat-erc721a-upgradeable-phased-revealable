@@ -1,0 +1,13 @@
+import { keccak256 } from 'ethers/lib/utils'
+import { writeFileSync } from 'fs'
+import { HardhatRuntimeEnvironment } from 'hardhat/types'
+import { join } from 'path'
+
+import { allowlistedAddresses } from '../libraries/envs'
+
+export default async (arg: any, env: HardhatRuntimeEnvironment) => {
+    const data = `[\n${allowlistedAddresses.map(keccak256).map(s => `    "${s}"`).join(",\n")}\n]`
+    const exportPath = join(__dirname, "allowlist.json")
+    console.info(`writing a file to ${exportPath}`)
+    writeFileSync(exportPath, data, { flag: "w" })
+}
