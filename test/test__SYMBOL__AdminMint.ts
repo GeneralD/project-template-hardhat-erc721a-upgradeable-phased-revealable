@@ -2,13 +2,13 @@ import { expect } from 'chai'
 import { ethers, upgrades } from 'hardhat'
 import { describe, it } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("Mint ZERO as admin", () => {
+describe("Mint __SYMBOL__ as admin", () => {
   it("Owner can mint in the limit", async () => {
     const [deployer] = await ethers.getSigners()
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(100)
 
@@ -21,8 +21,8 @@ describe("Mint ZERO as admin", () => {
 
   it("Owner can mint to other", async () => {
     const [, , bob] = await ethers.getSigners()
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(200)
 
@@ -35,8 +35,8 @@ describe("Mint ZERO as admin", () => {
 
   it("Other than owner can't adminMint", async () => {
     const [, alice, bob] = await ethers.getSigners()
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(100)
 
@@ -47,8 +47,8 @@ describe("Mint ZERO as admin", () => {
   it("Even admin can't mint over the limit", async () => {
     const [deployer, alice] = await ethers.getSigners()
 
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(20)
 

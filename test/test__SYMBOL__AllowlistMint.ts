@@ -4,12 +4,12 @@ import { ethers, upgrades } from 'hardhat'
 import MerkleTree from 'merkletreejs'
 import { describe } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("Mint ZERO as allowlisted member", () => {
+describe("Mint __SYMBOL__ as allowlisted member", () => {
     it("Allowlisted member can mint", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         const [, john, jonny, jonathan] = await ethers.getSigners()
 
@@ -41,8 +41,8 @@ describe("Mint ZERO as allowlisted member", () => {
     })
 
     it("Not allowlisted member's minting is not allowed", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         const [, john, jonny, jonathan, mike] = await ethers.getSigners()
 
@@ -65,8 +65,8 @@ describe("Mint ZERO as allowlisted member", () => {
     })
 
     it("Allowlisted member can mint but not over the limit", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         const [, john, jonny, jonathan] = await ethers.getSigners()
 
@@ -108,8 +108,8 @@ describe("Mint ZERO as allowlisted member", () => {
     })
 
     it("Allowlisted member can mint in allowlist mint limit but not over the limit of entire contract", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         const [, john, jonny, jonathan] = await ethers.getSigners()
 
@@ -137,8 +137,8 @@ describe("Mint ZERO as allowlisted member", () => {
     })
 
     it("Cannot mint if sent ETH is not enough", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         const [, john, jonny, jonathan] = await ethers.getSigners()
 

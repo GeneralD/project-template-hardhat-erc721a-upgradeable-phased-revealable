@@ -2,14 +2,14 @@ import { expect } from 'chai'
 import { ethers, upgrades } from 'hardhat'
 import { describe, it } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("Burn ZERO", () => {
+describe("Burn __SYMBOL__", () => {
   it("Owner can burn then totalSupply decreased", async () => {
     const [deployer] = await ethers.getSigners()
 
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(10)
     await expect(instance.adminMint(5))
@@ -36,8 +36,8 @@ describe("Burn ZERO", () => {
   })
 
   it("Cannot burn same token twice", async () => {
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(10)
     await instance.adminMint(5)
@@ -49,8 +49,8 @@ describe("Burn ZERO", () => {
   it("Burning doesn't release the minting spaces", async () => {
     const [deployer] = await ethers.getSigners()
 
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(5)
 
@@ -78,8 +78,8 @@ describe("Burn ZERO", () => {
   })
 
   it("Reading tokenURI should be reverted for tokenId which is already burned", async () => {
-    const factory = await latestZEROFactory
-    const instance = await upgrades.deployProxy(factory) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
     await instance.setMintLimit(10)
     await instance.adminMint(10)

@@ -1,13 +1,13 @@
 import { ethers } from 'hardhat'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 import createMerkleRoot from '../libraries/createMerkleRoot'
 import { deployedProxies } from '../libraries/deployedProxy'
 import { allowlistedAddresses } from '../libraries/envs'
 
 async function main() {
-    const factory = await latestZEROFactory
-    const instance = factory.attach((await deployedProxies(1))[0].address) as LatestZERO
+    const factory = await latest__SYMBOL__Factory
+    const instance = factory.attach((await deployedProxies(1))[0].address) as Latest__SYMBOL__
 
     const [deployer] = await ethers.getSigners()
     let nonce = await ethers.provider.getTransactionCount(deployer.address)

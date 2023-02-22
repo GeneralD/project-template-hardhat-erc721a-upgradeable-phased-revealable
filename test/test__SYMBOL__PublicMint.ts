@@ -2,13 +2,13 @@ import { expect } from 'chai'
 import { ethers, upgrades } from 'hardhat'
 import { describe, it } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("ZERO Public Minting", () => {
+describe("__SYMBOL__ Public Minting", () => {
     it("Can public mint", async () => {
         const [, john] = await ethers.getSigners()
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setMintLimit(300)
         if (await instance.isPublicMintPaused())
@@ -34,8 +34,8 @@ describe("ZERO Public Minting", () => {
 
     it("Can't public-mint over the limit", async () => {
         const [, john] = await ethers.getSigners()
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setMintLimit(300)
         if (await instance.isPublicMintPaused())
@@ -53,8 +53,8 @@ describe("ZERO Public Minting", () => {
 
     it("Cannot mint if sent ETH is not enough", async () => {
         const [, john] = await ethers.getSigners()
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setMintLimit(300)
         if (await instance.isPublicMintPaused())

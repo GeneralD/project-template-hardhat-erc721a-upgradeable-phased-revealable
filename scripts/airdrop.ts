@@ -3,11 +3,11 @@ import { createReadStream } from 'fs'
 import { ethers } from 'hardhat'
 import { join } from 'path'
 
-import { latestZEROFactory } from '../libraries/const'
+import { latest__SYMBOL__Factory } from '../libraries/const'
 import { deployedProxies } from '../libraries/deployedProxy'
 
 async function main() {
-    const factory = await latestZEROFactory
+    const factory = await latest__SYMBOL__Factory
     const instance = factory.attach((await deployedProxies(1))[0].address)
     await instance.deployed()
 

@@ -3,13 +3,13 @@ import { writeFileSync } from 'fs'
 import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { join } from 'path'
 
-import { LatestZERO } from '../libraries/const'
+import { Latest__SYMBOL__ } from '../libraries/const'
 import { deployedProxies } from '../libraries/deployedProxyForRuntimeEnvironment'
 import { allowlistedAddresses } from '../libraries/envs'
 
 export default async (arg: any, env: HardhatRuntimeEnvironment) => {
-    const factory = await env.ethers.getContractFactory("ZEROVer0")
-    const instance = factory.attach((await deployedProxies(1, env))[0].address) as LatestZERO
+    const factory = await env.ethers.getContractFactory("__SYMBOL__Ver0")
+    const instance = factory.attach((await deployedProxies(1, env))[0].address) as Latest__SYMBOL__
 
     const data = await Promise.all(allowlistedAddresses.map(address => instance.allowListMemberMintCount(address)
         .then(balance => ({ address, balance }))

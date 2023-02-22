@@ -3,13 +3,13 @@ import { parseEther } from 'ethers/lib/utils'
 import { ethers, upgrades } from 'hardhat'
 import { describe, it } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("ZERO Royalty (EIP2981)", () => {
+describe("__SYMBOL__ Royalty (EIP2981)", () => {
     it("Check royalty fee", async () => {
         const [deployer] = await ethers.getSigners()
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setMintLimit(10)
         await instance.adminMint(10)
@@ -21,16 +21,16 @@ describe("ZERO Royalty (EIP2981)", () => {
     })
 
     it("Reading royalty info should be reverted when the tokenId is not minted yet", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await expect(instance.royaltyInfo(100, parseEther("1"))).to.reverted
     })
 
 
     it("Reading royalty info should be reverted when the tokenId is already burnt", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setMintLimit(10)
         await instance.adminMint(10)

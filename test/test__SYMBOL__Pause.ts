@@ -5,12 +5,12 @@ import { ethers, upgrades } from 'hardhat'
 import MerkleTree from 'merkletreejs'
 import { describe, it } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("Pause ZERO", () => {
+describe("Pause __SYMBOL__", () => {
     it("Toggle allowlist mint pausing", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         // unpause if it's paused
         if (await instance.isAllowlistMintPaused())
@@ -35,8 +35,8 @@ describe("Pause ZERO", () => {
 
 
     it("Toggle public mint pausing", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         // unpause if it's paused
         if (await instance.isPublicMintPaused())
@@ -60,8 +60,8 @@ describe("Pause ZERO", () => {
     })
 
     it("Allowlist mint is not available if it's paused", async () => {
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
         const [, john, jonny, jonathan] = await ethers.getSigners()
 
         if (!(await instance.isAllowlistMintPaused())) await instance.pauseAllowlistMint()

@@ -1,6 +1,6 @@
 import { ethers } from 'hardhat'
 
-import { ZEROVer0 } from '../typechain'
+import { __SYMBOL__Ver0 } from '../typechain'
 
-export const latestZEROFactory = ethers.getContractFactory("ZEROVer0")
-export type LatestZERO = ZEROVer0
+export const latest__SYMBOL__Factory = ethers.getContractFactory("__SYMBOL__Ver0")
+export type Latest__SYMBOL__ = __SYMBOL__Ver0

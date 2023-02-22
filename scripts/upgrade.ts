@@ -1,12 +1,12 @@
 import { upgrades } from 'hardhat'
 
-import { latestZEROFactory } from '../libraries/const'
+import { latest__SYMBOL__Factory } from '../libraries/const'
 import { deployedProxies } from '../libraries/deployedProxy'
 
 async function main() {
     const proxies = await deployedProxies(1)
 
-    const instance = await upgrades.upgradeProxy(proxies[0].address, await latestZEROFactory)
+    const instance = await upgrades.upgradeProxy(proxies[0].address, await latest__SYMBOL__Factory)
     await instance.deployed()
 }
 

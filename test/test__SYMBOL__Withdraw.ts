@@ -2,14 +2,14 @@ import { expect } from 'chai'
 import { ethers, upgrades } from 'hardhat'
 import { describe } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("Withdraw from ZERO", () => {
+describe("Withdraw from __SYMBOL__", () => {
     it("Withdraw all", async () => {
         const [deployer] = await ethers.getSigners()
 
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         if (await instance.isPublicMintPaused()) await instance.unpausePublicMint()
         await instance.setMintLimit(200)
@@ -35,8 +35,8 @@ describe("Withdraw from ZERO", () => {
     it("Nobody can withdraw other than owner", async () => {
         const [, badguy] = await ethers.getSigners()
 
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.withdraw() // ok
         await expect(instance.connect(badguy).withdraw()).to.revertedWith("Ownable: caller is not the owner")
@@ -45,8 +45,8 @@ describe("Withdraw from ZERO", () => {
     it("Withdrawal receiver receives all", async () => {
         const [, alice, , , , , , , ivan] = await ethers.getSigners()
 
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         if (await instance.isPublicMintPaused()) await instance.unpausePublicMint()
         await instance.setMintLimit(200)

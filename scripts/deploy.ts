@@ -1,13 +1,13 @@
 import { parseEther } from 'ethers/lib/utils'
 import { ethers, upgrades } from 'hardhat'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 import { isProxiesDeployed } from '../libraries/deployedProxy'
 
 async function main() {
   if (await isProxiesDeployed(1)) throw Error("Proxy has already been deployed! 'Upgrade' instead.")
 
-  const instance = await upgrades.deployProxy(await latestZEROFactory) as LatestZERO
+  const instance = await upgrades.deployProxy(await latest__SYMBOL__Factory) as Latest__SYMBOL__
   await instance.deployed()
 
   console.log(await instance.name(), " is deployed to: ", instance.address)
@@ -16,7 +16,7 @@ async function main() {
   let nonce = await ethers.provider.getTransactionCount(deployer.address)
 
   // set variables
-  await instance.setBaseURI("https://zero-nft.com/", { nonce: nonce++ }) // should end with a slash
+  await instance.setBaseURI("https://__symbol__-nft.com/", { nonce: nonce++ }) // should end with a slash
   await instance.setMintLimit(1000, { nonce: nonce++ })
   // public mint
   if (!await instance.isPublicMintPaused()) await instance.pausePublicMint({ nonce: nonce++ })
@@ -26,7 +26,7 @@ async function main() {
   await instance.setAllowListPrice(parseEther("0.005"), { nonce: nonce++ })
   await instance.setAllowlistedMemberMintLimit(3, { nonce: nonce++ })
   // reveal
-  await instance.setKeccakPrefix(0, "ZERO_", { nonce: nonce++ })
+  await instance.setKeccakPrefix(0, "__SYMBOL___", { nonce: nonce++ })
   await instance.setKeccakPrefix(1, "ONE_", { nonce: nonce++ })
   await instance.setHighestStage(0, { nonce: nonce++ })
   // royalty

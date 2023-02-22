@@ -1,4 +1,4 @@
-# Zero NFT powered by YUMENOSUKE
+# __Symbol__ NFT powered by YUMENOSUKE
 
 Usage:
 

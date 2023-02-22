@@ -3,13 +3,13 @@ import { keccak256, toUtf8Bytes } from 'ethers/lib/utils'
 import { ethers, upgrades } from 'hardhat'
 import { describe, it } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("ZERO TokenURI", () => {
+describe("__SYMBOL__ TokenURI", () => {
     it("Check URIs before and after changing stage", async () => {
         const [_, alice] = await ethers.getSigners()
 
-        const instanceA = await upgrades.deployProxy(await latestZEROFactory) as LatestZERO
+        const instanceA = await upgrades.deployProxy(await latest__SYMBOL__Factory) as Latest__SYMBOL__
 
         await instanceA.setHighestStage(2)
         await instanceA.setMintLimit(10)

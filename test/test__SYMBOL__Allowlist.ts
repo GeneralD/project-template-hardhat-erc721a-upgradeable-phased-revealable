@@ -4,9 +4,9 @@ import { ethers, upgrades } from 'hardhat'
 import { MerkleTree } from 'merkletreejs'
 import { describe, it } from 'mocha'
 
-import { LatestZERO, latestZEROFactory } from '../libraries/const'
+import { Latest__SYMBOL__, latest__SYMBOL__Factory } from '../libraries/const'
 
-describe("ZERO allowlist", () => {
+describe("__SYMBOL__ allowlist", () => {
     it("Allowlisted member is verified", async () => {
         const [, john, jonny, jonathan] = await ethers.getSigners()
         const allowlisted = [john, jonny, jonathan]
@@ -15,8 +15,8 @@ describe("ZERO allowlist", () => {
         const tree = new MerkleTree(leaves, keccak256, { sort: true })
         const root = tree.getHexRoot()
 
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setAllowlist(root)
         await instance.unpauseAllowlistMint()
@@ -40,8 +40,8 @@ describe("ZERO allowlist", () => {
         const tree = new MerkleTree(leaves, keccak256, { sort: true })
         const root = tree.getHexRoot()
 
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setAllowlist(root)
         await instance.unpauseAllowlistMint()
@@ -69,8 +69,8 @@ describe("ZERO allowlist", () => {
         const tree = new MerkleTree(leaves, keccak256, { sort: true })
         const root = tree.getHexRoot()
 
-        const factory = await latestZEROFactory
-        const instance = await upgrades.deployProxy(factory) as LatestZERO
+        const factory = await latest__SYMBOL__Factory
+        const instance = await upgrades.deployProxy(factory) as Latest__SYMBOL__
 
         await instance.setAllowlist(root)
         await instance.unpauseAllowlistMint()

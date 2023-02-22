@@ -28,7 +28,7 @@ import "erc721a-upgradeable/contracts/ERC721AUpgradeable.sol";
 import "erc721a-upgradeable/contracts/extensions/ERC721ABurnableUpgradeable.sol";
 import "erc721a-upgradeable/contracts/extensions/ERC721AQueryableUpgradeable.sol";
 
-contract ZEROVer0 is
+contract __SYMBOL__Ver0 is
     ERC721AUpgradeable,
     ERC721ABurnableUpgradeable,
     ERC721AQueryableUpgradeable,
@@ -39,7 +39,7 @@ contract ZEROVer0 is
     using StringsUpgradeable for uint256;
 
     function initialize() public initializerERC721A initializer {
-        __ERC721A_init("Zero NFT", "ZERO");
+        __ERC721A_init("$$Token Name$$", "__SYMBOL__");
         __ERC721ABurnable_init();
         __ERC721AQueryable_init();
         __Ownable_init();
