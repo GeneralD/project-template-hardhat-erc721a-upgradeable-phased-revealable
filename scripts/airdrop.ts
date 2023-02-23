@@ -1,14 +1,15 @@
 import csv from 'csv-parser'
 import { createReadStream } from 'fs'
-import { ethers } from 'hardhat'
+import env, { ethers } from 'hardhat'
 import { join } from 'path'
 
 import { latest__SYMBOL__Factory } from '../libraries/const'
-import { deployedProxies } from '../libraries/deployedProxy'
+import HardhatRuntimeUtility from '../libraries/HardhatRuntimeUtility'
 
 async function main() {
+    const util = new HardhatRuntimeUtility(env)
     const factory = await latest__SYMBOL__Factory
-    const instance = factory.attach((await deployedProxies(1))[0].address)
+    const instance = factory.attach((await util.deployedProxies(1))[0].address)
     await instance.deployed()
 
     const rows: { address: string, balance: number }[] = []

@@ -4,14 +4,14 @@ import { HardhatRuntimeEnvironment } from 'hardhat/types'
 import { join } from 'path'
 
 import { Latest__SYMBOL__ } from '../libraries/const'
-import { deployedProxies } from '../libraries/deployedProxyForRuntimeEnvironment'
-import { allowlistedAddresses } from '../libraries/envs'
+import HardhatRuntimeUtility from '../libraries/HardhatRuntimeUtility'
 
 export default async (arg: any, env: HardhatRuntimeEnvironment) => {
+    const util = new HardhatRuntimeUtility(env)
     const factory = await env.ethers.getContractFactory("__SYMBOL__Ver0")
-    const instance = factory.attach((await deployedProxies(1, env))[0].address) as Latest__SYMBOL__
+    const instance = factory.attach((await util.deployedProxies(1))[0].address) as Latest__SYMBOL__
 
-    const data = await Promise.all(allowlistedAddresses.map(address => instance.allowListMemberMintCount(address)
+    const data = await Promise.all(util.allowlistedAddresses.map(address => instance.allowListMemberMintCount(address)
         .then(balance => ({ address, balance }))
         .catch(_ => ({ address, balance: BigNumber.from(0) }))
     ))
