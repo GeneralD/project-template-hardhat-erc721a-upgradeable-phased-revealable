@@ -11,4 +11,7 @@ ignore:
     - ".git"
     - "node_modules"
     - ".env"
+    - "artifacts"
+    - "cache"
+    - "typechain"
 rootDirectoryName: "$$project root directory name$$"
