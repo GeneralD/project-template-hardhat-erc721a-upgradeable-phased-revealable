@@ -35,7 +35,7 @@ export default class {
             // chain on localhost is disposable but json is left even the chain is discarded.
             // so need to check if the proxy is currently on chain.
             if (this.env.network.name == 'localhost') {
-                const adminAddresses = await Promise.all(proxies.map(proxy => upgrades.erc1967.getAdminAddress(proxy.address)))
+                const adminAddresses = await Promise.all(proxies.map(proxy => this.env.upgrades.erc1967.getAdminAddress(proxy.address)))
                 return !adminAddresses.includes("0x0000000000000000000000000000000000000000")
             }
             return true
