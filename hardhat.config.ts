@@ -11,6 +11,7 @@ import { HardhatUserConfig, task } from 'hardhat/config'
 import exportAllowlistMintCSV from './tasks/exportAllowlistMintCSV'
 import exportHashedAllowlistJsonTask from './tasks/exportHashedAllowlistJsonTask'
 import snapshotTask from './tasks/snapshotTask'
+import verifyEtherscan from './tasks/verifyEtherscan'
 
 dotenv.config()
 
@@ -20,6 +21,10 @@ task("accounts")
     const accounts = await env.ethers.getSigners()
     for (const account of accounts) console.log(account.address)
   })
+
+task("verifyEtherscan")
+  .setDescription("alternative verify task but sets arguments automatically")
+  .setAction(verifyEtherscan)
 
 task("snapshot")
   .setDescription("Take a snapshot of owners of a collection")
@@ -87,8 +92,13 @@ const config: HardhatUserConfig = {
     coinmarketcap: process.env.COINMARKETCAP_API_KEY,
   },
   etherscan: {
-    apiKey: process.env.ETHERSCAN_API_KEY,
-    // apiKey: process.env.BSCSCAN_API_KEY,
+    // Note: To see full list of supported networks, run `npx hardhat verify --list-networks`.
+    apiKey: {
+      mainnet: process.env.ETHERSCAN_API_KEY ?? "",
+      goerli: process.env.ETHERSCAN_API_KEY ?? "",
+      bsc: process.env.BSCSCAN_API_KEY ?? "",
+      bscTestnet: process.env.BSCSCAN_API_KEY ?? "",
+    },
   },
 }
 

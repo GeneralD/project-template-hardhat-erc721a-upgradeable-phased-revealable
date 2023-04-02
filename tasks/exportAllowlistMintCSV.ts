@@ -12,8 +12,8 @@ export default async (arg: any, env: HardhatRuntimeEnvironment) => {
     const instance = factory.attach((await util.deployedProxies(1))[0].address) as Latest__SYMBOL__
 
     const data = await Promise.all(util.allowlistedAddresses.map(address => instance.allowListMemberMintCount(address)
-        .then(balance => ({ address, balance }))
-        .catch(_ => ({ address, balance: BigNumber.from(0) }))
+        .then((balance: any) => ({ address, balance }))
+        .catch((_: any) => ({ address, balance: BigNumber.from(0) }))
     ))
     const csvBody = data
         .sort((lhs, rhs) => rhs.balance.toNumber() - lhs.balance.toNumber())
