@@ -34,7 +34,6 @@ task("exportAllowlist")
   .setDescription("Export hashed-allowlist addresses to a JSON file")
   .setAction(exportHashedAllowlistJsonTask)
 
-
 task("exportAllowlistMintProgress")
   .setDescription("Export allowlist minting progress to a CSV")
   .setAction(exportAllowlistMintCSV)
